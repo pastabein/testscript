@@ -1,4 +1,4 @@
--- Updated Roblox Egg Refresher Script - Black background, red detect button, smaller frames, bigger title
+-- Updated Roblox Egg Refresher Script - Black background, red detect button, smaller frames, bigger title, fixed title color, restored Choose Egg button
 
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
@@ -53,6 +53,40 @@ startButton.MouseButton1Click:Connect(function()
     mainSquare.Visible = true
 end)
 
+-- Choose Egg Button
+local eggButton = Instance.new("TextButton", mainSquare)
+eggButton.Size = UDim2.new(0.8, 0, 0.15, 0)
+eggButton.Position = UDim2.new(0.1, 0, 0.05, 0)
+eggButton.Text = "Choose Egg"
+eggButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Instance.new("UICorner", eggButton)
+
+local eggList = {"Bug Egg", "Night Egg", "Anti-Bee Egg", "Oasis Egg", "Paradise Egg"}
+local dropdown = Instance.new("Frame", mainSquare)
+dropdown.Size = UDim2.new(0.8, 0, 0.3, 0)
+dropdown.Position = UDim2.new(0.1, 0, 0.2, 0)
+dropdown.Visible = false
+dropdown.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Instance.new("UICorner", dropdown)
+
+for i, egg in ipairs(eggList) do
+    local btn = Instance.new("TextButton", dropdown)
+    btn.Size = UDim2.new(1, 0, 0.2, 0)
+    btn.Position = UDim2.new(0, 0, (i - 1) * 0.22, 0)
+    btn.Text = egg
+    Instance.new("UICorner", btn)
+
+    btn.MouseButton1Click:Connect(function()
+        selectedEgg = egg
+        eggButton.Text = egg
+        dropdown.Visible = false
+    end)
+end
+
+eggButton.MouseButton1Click:Connect(function()
+    dropdown.Visible = not dropdown.Visible
+end)
+
 -- Floating Scanning Pet
 local function addScanningLabel(eggPart, petName, showName)
     local billboard = Instance.new("BillboardGui", eggPart)
@@ -74,14 +108,14 @@ end
 -- Detect & Refresh Buttons
 local detectButton = Instance.new("TextButton", mainSquare)
 detectButton.Size = UDim2.new(0.8, 0, 0.15, 0)
-detectButton.Position = UDim2.new(0.1, 0, 0.25, 0)
+detectButton.Position = UDim2.new(0.1, 0, 0.5, 0)
 detectButton.Text = "Detect Egg"
 detectButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
 Instance.new("UICorner", detectButton)
 
 local refreshButton = Instance.new("TextButton", mainSquare)
 refreshButton.Size = UDim2.new(0.8, 0, 0.15, 0)
-refreshButton.Position = UDim2.new(0.1, 0, 0.45, 0)
+refreshButton.Position = UDim2.new(0.1, 0, 0.7, 0)
 refreshButton.Text = "Refresh"
 refreshButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
 refreshButton.AutoButtonColor = false
@@ -128,8 +162,9 @@ end)
 
 -- Title
 local titleLabel = Instance.new("TextLabel", mainSquare)
-titleLabel.Size = UDim2.new(1, 0, 0.1, 0)
-titleLabel.Position = UDim2.new(0, 0, 0.7, 0)
+titleLabel.Size = UDim2.new(1, 0, 0.12, 0)
+titleLabel.Position = UDim2.new(0, 0, 0.85, 0)
 titleLabel.Text = "Egg Refresher - Real Scan"
 titleLabel.BackgroundTransparency = 1
+titleLabel.TextColor3 = Color3.new(1, 1, 1)
 titleLabel.TextSize = 20
