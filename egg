@@ -1,4 +1,4 @@
--- Roblox Egg Refresher Script with modern UI, floating "Scanning Pet" labels, and egg detection (no sounds)
+-- Updated Roblox Egg Refresher Script - Black background, red detect button, smaller frames, bigger title
 
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
@@ -6,8 +6,21 @@ local screenGui = Instance.new("ScreenGui", playerGui)
 screenGui.ResetOnSpawn = false
 
 local TweenService = game:GetService("TweenService")
+local Debris = game:GetService("Debris")
 
--- Draggable Utility
+local selectedEgg = nil
+local detectCooldown = false
+
+local petNames = {
+    ["Bug Egg"] = "Snail",
+    ["Night Egg"] = "Moon Cat",
+    ["Anti-Bee Egg"] = "Wasp",
+    ["Oasis Egg"] = "Sand Snake",
+    ["Paradise Egg"] = "Capybara"
+}
+
+local scannedEggs = {}
+
 local function makeDraggable(frame)
     frame.Active = true
     frame.Draggable = true
@@ -15,23 +28,22 @@ end
 
 -- Start Frame
 local startFrame = Instance.new("Frame", screenGui)
-startFrame.Size = UDim2.new(0, 250, 0, 120)
+startFrame.Size = UDim2.new(0, 220, 0, 100)
 startFrame.Position = UDim2.new(0.4, 0, 0.4, 0)
-startFrame.BackgroundColor3 = Color3.fromRGB(34, 70, 34)
+startFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Instance.new("UICorner", startFrame)
 makeDraggable(startFrame)
 
 local startButton = Instance.new("TextButton", startFrame)
-startButton.Size = UDim2.new(0.7, 0, 0.5, 0)
-startButton.Position = UDim2.new(0.15, 0, 0.25, 0)
+startButton.Size = UDim2.new(0.8, 0, 0.5, 0)
+startButton.Position = UDim2.new(0.1, 0, 0.25, 0)
 startButton.Text = "Start"
 Instance.new("UICorner", startButton)
 
--- Main GUI
 local mainSquare = Instance.new("Frame", screenGui)
-mainSquare.Size = UDim2.new(0, 280, 0, 280)
+mainSquare.Size = UDim2.new(0, 250, 0, 220)
 mainSquare.Position = UDim2.new(0.4, 0, 0.35, 0)
-mainSquare.BackgroundColor3 = Color3.fromRGB(34, 70, 34)
+mainSquare.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 mainSquare.Visible = false
 Instance.new("UICorner", mainSquare)
 makeDraggable(mainSquare)
@@ -41,137 +53,83 @@ startButton.MouseButton1Click:Connect(function()
     mainSquare.Visible = true
 end)
 
--- Minimize/Restore
-local minimizeButton = Instance.new("TextButton", mainSquare)
-minimizeButton.Size = UDim2.new(0, 25, 0, 25)
-minimizeButton.Position = UDim2.new(1, -30, 0, 5)
-minimizeButton.Text = "-"
-Instance.new("UICorner", minimizeButton)
-
-local minimizedCircle = Instance.new("TextButton", screenGui)
-minimizedCircle.Size = UDim2.new(0, 50, 0, 50)
-minimizedCircle.Position = UDim2.new(0.4, 0, 0.35, 0)
-minimizedCircle.Text = "Full"
-minimizedCircle.Visible = false
-Instance.new("UICorner", minimizedCircle).CornerRadius = UDim.new(1, 0)
-makeDraggable(minimizedCircle)
-
-minimizeButton.MouseButton1Click:Connect(function()
-    mainSquare.Visible = false
-    minimizedCircle.Visible = true
-end)
-
-minimizedCircle.MouseButton1Click:Connect(function()
-    minimizedCircle.Visible = false
-    mainSquare.Visible = true
-end)
-
--- Close Button
-local closeButton = Instance.new("TextButton", mainSquare)
-closeButton.Size = UDim2.new(0, 25, 0, 25)
-closeButton.Position = UDim2.new(1, -60, 0, 5)
-closeButton.Text = "X"
-Instance.new("UICorner", closeButton)
-closeButton.MouseButton1Click:Connect(function()
-    screenGui.Enabled = false
-end)
-
--- Egg Selection
-local eggs = {"Bug Egg", "Night Egg", "Anti-Bee Egg", "Oasis Egg", "Paradise Egg"}
-local eggColors = {
-    ["Bug Egg"] = Color3.fromRGB(102, 204, 0),
-    ["Night Egg"] = Color3.fromRGB(51, 51, 102),
-    ["Anti-Bee Egg"] = Color3.fromRGB(204, 51, 0),
-    ["Oasis Egg"] = Color3.fromRGB(51, 153, 204),
-    ["Paradise Egg"] = Color3.fromRGB(255, 223, 0),
-}
-local selectedEgg = "Bug Egg"
-
-local eggButton = Instance.new("TextButton", mainSquare)
-eggButton.Size = UDim2.new(0.8, 0, 0.15, 0)
-eggButton.Position = UDim2.new(0.1, 0, 0.05, 0)
-eggButton.Text = selectedEgg
-eggButton.BackgroundColor3 = eggColors[selectedEgg]
-Instance.new("UICorner", eggButton)
-
-local eggListFrame = Instance.new("Frame", mainSquare)
-eggListFrame.Size = UDim2.new(0.6, 0, 0.6, 0)
-eggListFrame.Position = UDim2.new(1.05, 0, 0.05, 0)
-eggListFrame.Visible = false
-Instance.new("UICorner", eggListFrame)
-
-for i, eggName in ipairs(eggs) do
-    local eggOption = Instance.new("TextButton", eggListFrame)
-    eggOption.Name = eggName
-    eggOption.Size = UDim2.new(1, 0, 0.2, 0)
-    eggOption.Position = UDim2.new(0, 0, (i - 1) * 0.22, 0)
-    eggOption.Text = eggName
-    eggOption.BackgroundColor3 = eggColors[eggName]
-    Instance.new("UICorner", eggOption)
-
-    eggOption.MouseButton1Click:Connect(function()
-        selectedEgg = eggName
-        eggButton.Text = eggName
-        eggButton.BackgroundColor3 = eggColors[eggName]
-        eggListFrame.Visible = false
-    end)
-end
-
-eggButton.MouseButton1Click:Connect(function()
-    eggListFrame.Visible = not eggListFrame.Visible
-end)
-
--- Floating Scanning Label Function
-local function addScanningLabel(eggPart)
+-- Floating Scanning Pet
+local function addScanningLabel(eggPart, petName, showName)
     local billboard = Instance.new("BillboardGui", eggPart)
-    billboard.Size = UDim2.new(0, 100, 0, 50)
+    billboard.Size = UDim2.new(0, 120, 0, 50)
     billboard.Adornee = eggPart
     billboard.AlwaysOnTop = true
 
     local label = Instance.new("TextLabel", billboard)
     label.Size = UDim2.new(1, 0, 1, 0)
     label.BackgroundTransparency = 1
-    label.Text = "Scanning Pet"
+    label.Text = showName and ("Scanning Pet: " .. petName) or "Scanning Pet"
     label.TextColor3 = Color3.new(1, 1, 0)
     label.Font = Enum.Font.GothamBold
     label.TextScaled = true
 
-    game.Debris:AddItem(billboard, 5)
+    scannedEggs[#scannedEggs + 1] = {Part = eggPart, Billboard = billboard, PetName = petName}
 end
 
--- Egg Detection Function
-local function scanForEggs()
-    local found = false
-    for _, obj in ipairs(workspace:GetDescendants()) do
-        if (obj:IsA("Model") or obj:IsA("Part")) and string.find(obj.Name:lower(), "egg") then
-            if string.find(obj.Name:lower(), selectedEgg:lower()) then
-                addScanningLabel(obj)
-                found = true
-            end
-        end
-    end
-    return found and ("Found " .. selectedEgg) or "No matching eggs found"
-end
-
--- Detect Button
+-- Detect & Refresh Buttons
 local detectButton = Instance.new("TextButton", mainSquare)
 detectButton.Size = UDim2.new(0.8, 0, 0.15, 0)
 detectButton.Position = UDim2.new(0.1, 0, 0.25, 0)
 detectButton.Text = "Detect Egg"
+detectButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
 Instance.new("UICorner", detectButton)
 
+local refreshButton = Instance.new("TextButton", mainSquare)
+refreshButton.Size = UDim2.new(0.8, 0, 0.15, 0)
+refreshButton.Position = UDim2.new(0.1, 0, 0.45, 0)
+refreshButton.Text = "Refresh"
+refreshButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+refreshButton.AutoButtonColor = false
+refreshButton.Active = false
+Instance.new("UICorner", refreshButton)
+
 detectButton.MouseButton1Click:Connect(function()
+    if detectCooldown or not selectedEgg then return end
+    detectCooldown = true
+    refreshButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    refreshButton.Active = false
+
     detectButton.Text = "Scanning..."
-    local resultText = scanForEggs()
-    detectButton.Text = resultText
-    task.delay(4, function()
+    for _, obj in ipairs(workspace:GetDescendants()) do
+        if (obj:IsA("Model") or obj:IsA("Part")) and string.find(obj.Name:lower(), selectedEgg:lower()) then
+            addScanningLabel(obj, petNames[selectedEgg] or "Unknown", false)
+        end
+    end
+
+    local timeRemaining = 600
+    task.spawn(function()
+        while timeRemaining > 0 do
+            task.wait(1)
+            timeRemaining -= 1
+            detectButton.Text = string.format("Scanning (%d:%02d)", math.floor(timeRemaining / 60), timeRemaining % 60)
+        end
+        detectCooldown = false
         detectButton.Text = "Detect Egg"
+        refreshButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+        refreshButton.Active = true
     end)
+end)
+
+refreshButton.MouseButton1Click:Connect(function()
+    for _, data in ipairs(scannedEggs) do
+        local billboard = data.Billboard
+        if billboard and billboard.Parent then
+            if billboard:FindFirstChildOfClass("TextLabel") then
+                billboard.TextLabel.Text = "Scanning Pet: " .. data.PetName
+            end
+        end
+    end
 end)
 
 -- Title
 local titleLabel = Instance.new("TextLabel", mainSquare)
 titleLabel.Size = UDim2.new(1, 0, 0.1, 0)
 titleLabel.Position = UDim2.new(0, 0, 0.7, 0)
-titleLabel.Text = "Egg Refresher - Modified by NO-Lag script"
+titleLabel.Text = "Egg Refresher - Real Scan"
 titleLabel.BackgroundTransparency = 1
+titleLabel.TextSize = 20
